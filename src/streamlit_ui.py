@@ -1,13 +1,30 @@
+
+
 import streamlit as st
 import tempfile
 import os
+import re
 from agent import agent_main
+
+def highlight_severity(text):
+    if "Critical" in text:
+        return f"<span style='color:red;font-weight:bold'>{text}</span>"
+    elif "High" in text:
+        return f"<span style='color:orange;font-weight:bold'>{text}</span>"
+    elif "Medium" in text:
+        return f"<span style='color:goldenrod'>{text}</span>"
+    elif "Low" in text:
+        return f"<span style='color:green'>{text}</span>"
+    elif "N/A" in text:
+        return f"<span style='color:white'>{text}</span>"
+    return text
+
+
 
 def main():
     st.title("🔒 AI Open-Source Dependency Guardian")
     st.markdown("Scan your dependency files for security risks and get AI-powered recommendations!")
     
-    # File upload
     uploaded_file = st.file_uploader(
         "Upload your dependency file", 
         type=['txt', 'json'], 
@@ -15,33 +32,39 @@ def main():
     )
     
     if uploaded_file is not None:
-        # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False, suffix=uploaded_file.name) as tmp_file:
             tmp_file.write(uploaded_file.getvalue())
             tmp_file_path = tmp_file.name
         
         try:
-            # Process the file
             with st.spinner("🔍 Analyzing dependencies..."):
-                report, patched_file = agent_main(tmp_file_path)
+                parsed_results, patched_file, risk_score = agent_main(tmp_file_path)
             
-            # Display results
             st.success("✅ Analysis complete!")
-            
-            # Show risk report
-            st.subheader("📊 Risk Report")
-            st.text_area("Analysis Results", report, height=400)
-            
-            # Download patched file
+
+            # ✅ Show overall risk score
+            st.subheader("📊 Overall Risk Score")
+            st.metric("Risk Score", f"{risk_score}/100")
+
+            # ✅ Show each dependency as a card
+            st.subheader("Dependency Analysis")
+            for dep in parsed_results:
+                with st.expander(f"📦 {dep['package']} ({dep['current_version']}) - {dep['severity']}"):
+                    st.markdown(
+                        f"**CVSS:** {dep['cvss']} | "
+                        f"{highlight_severity(dep['severity'])}",
+                        unsafe_allow_html=True
+                    )
+                    st.write(dep['explanation'])
+                    st.markdown(f"✅ **Suggested Fix:** `{dep['fix']}`")
+
+            # ✅ Download patched file
             if patched_file:
-                st.subheader("📥 Download Patched File")
-                
-                # Preserve original extension and add _patched
                 base_name, ext = os.path.splitext(uploaded_file.name)
                 download_name = f"{base_name}_patched{ext}"
-
                 mime_type = "application/json" if ext == ".json" else "text/plain"
 
+                st.subheader("📥 Download Patched File")
                 st.download_button(
                     label="Download Patched Dependencies",
                     data=patched_file,
@@ -49,25 +72,23 @@ def main():
                     mime=mime_type
                 )
 
-            
-            # Show file preview
-            st.subheader("📋 Original File Preview")
-            with open(tmp_file_path, 'r') as f:
-                original_content = f.read()
-            st.code(original_content, language="text")
+            # ✅ Side-by-side original and patched file preview
+            st.subheader("📂 File Comparison")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.markdown("**Original File**")
+                with open(tmp_file_path, 'r') as f:
+                    original_content = f.read()
+                st.code(original_content, language="json" if uploaded_file.name.endswith(".json") else "text")
+            with col2:
+                st.markdown("**Patched File**")
+                st.code(patched_file, language="json" if uploaded_file.name.endswith(".json") else "text")
 
-            # Patched File
-            st.subheader("🔧 Patched File Preview")
-            st.code(patched_file, language="json" if uploaded_file.name.endswith(".json") else "text")
-
-            
         except Exception as e:
             st.error(f"❌ Error processing file: {str(e)}")
         finally:
-            # Clean up temporary file
             os.unlink(tmp_file_path)
     
-    # Sidebar with info
     with st.sidebar:
         st.header("ℹ️ About")
         st.markdown("""
@@ -81,8 +102,8 @@ def main():
         st.header("📋 Supported Files")
         st.markdown("""
         - `requirements.txt` (Python)
-        - `package.json` (Node.js) - Coming soon
+        - `package.json` (Node.js)
         """)
 
 if __name__ == "__main__":
-    main() 
+    main()

@@ -21,17 +21,17 @@ def agent_main(dep_file_path):
     last_scan = retrieve_memory(dep_file_path)
     plan_tasks = plan(combined_deps, last_scan)
 
-    report, patched_file, risk_score = execute(plan_tasks, combined_deps, parsed_data, file_type)
+    parsed_results, patched_file, risk_score = execute(plan_tasks, combined_deps, parsed_data, file_type)
 
 
     store_memory(dep_file_path, {
         'dependencies': parsed_data,
         'risk_score': risk_score,
-        'report': report,
+        'report': parsed_results,
         'patched_file': patched_file,
         'scan_date': datetime.now(timezone.utc).isoformat(),
         'file_type': file_type
     })
 
 
-    return report, patched_file
+    return parsed_results, patched_file, risk_score

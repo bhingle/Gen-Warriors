@@ -57,35 +57,63 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
     You are a dependency risk analyzer.
 
     For each dependency below:
-    - Identify if the current version has known vulnerabilities.
-    - If vulnerabilities exist, include the CVSS score (0.0-10.0) and severity (Critical/High/Medium/Low).
-    - Explain the risk in terms so non-technical stakeholders can understand and you should also map that to the potential business impact.
+    - Identify if the current version has known vulnerabilities, check public databases (e.g., National Vulneability Database, Open Source Vulneabilities).
+    - If multiple vulnerabilities exist for a version, use the highest CVSS score and the corresponding severity.
+    - Explain the risk in terms so non-technical stakeholders can understand and you should also map that to the potential business impact.Explain business impact in a bit detail.
     - Suggest the latest safe/stable version.
 
     Dependencies:
     {parsed_data}
 
-    Note : output section should be exactly in this format (plain text only, no Markdown, no backticks, no bold)
-    Output must include:
-    1. "Risk Score: <0-100>" as an overall project risk.
-    2. For each dependency:
-       - Current version
-       - CVSS score (if any)
-       - Severity
-       - Risk explanation
-    3. A "Suggested Fixes:" section with package>=version lines.
+    Output only valid JSON. 
+    ❌ Do NOT include markdown formatting.
+    ❌ Do NOT wrap the JSON in ``` or add 'json'.
+    ❌ Do NOT add explanations outside the JSON..
+
+    Use this format:
+    {{
+    "risk_score": <0-100>,
+    "dependencies": [
+        {{
+        "package": "<name>",
+        "current_version": "<version>",
+        "cvss": "<score or N/A>",
+        "severity": "<Critical/High/Medium/Low>",
+        "explanation": "<plain risk explanation>",
+        "fix": "<package>=<version>"
+        }}
+    ],
+    "suggested_fixes": [
+        "<package>=<version>",
+        "<package>=<version>"
+    ]
+    }}
     """
 
     gemini_response = call_gemini(prompt)
+    # ✅ Parse JSON safely
+    if gemini_response.strip().startswith("```"):
+        match = re.search(r"\{.*\}", gemini_response, re.DOTALL)
+        if match:
+            gemini_response = match.group(0)
+    try:
+        parsed = json.loads(gemini_response)
+    except json.JSONDecodeError:
+        parsed = {"risk_score": 50, "dependencies": [], "suggested_fixes": []}
 
-    match = re.search(r"Risk Score: (\d+)", gemini_response)
-    risk_score = int(match.group(1)) if match else 50
+    risk_score = parsed.get("risk_score", 50)
+    parsed_results = parsed.get("dependencies", [])
 
-    suggested_versions = extract_suggested_versions(gemini_response)
+    # ✅ Build suggested_versions dict
+    suggested_versions = {}
+    for item in parsed.get("suggested_fixes", []):
+        if ">=" in item:
+            pkg, ver = item.split(">=")
+            suggested_versions[pkg.strip()] = ver.strip()
 
     if file_type == "json":
         patched_file = generate_updated_package_json(original_sections, suggested_versions)
     else:
         patched_file = generate_patched_requirements(original_sections, suggested_versions)
 
-    return gemini_response, patched_file, risk_score
+    return parsed_results, patched_file, risk_score

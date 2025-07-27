@@ -1,63 +1,90 @@
 from gemini_api import call_gemini
+import re
+import json
 
-# Mock vulnerability DB for demo
-MOCK_VULN_DB = {
-    'django': {'min_safe': '4.0', 'risk': 'Outdated, no longer receives security patches.'},
-    'requests': {'min_safe': '2.31', 'risk': 'Known CVEs for versions <2.20.'},
-}
 
-def check_outdated(deps):
-    results = []
-    for name, version in deps:
-        if name in MOCK_VULN_DB:
-            info = MOCK_VULN_DB[name]
-            min_safe = info['min_safe']
-            risk = info['risk']
-            results.append({
-                'name': name,
-                'version': version,
-                'risk': risk,
-                'recommendation': f"Upgrade to {name}>={min_safe}.",
-                'suggested_version': min_safe
-            })
-        else:
-            results.append({
-                'name': name,
-                'version': version,
-                'risk': 'No known issues.',
-                'recommendation': 'Up to date.',
-                'suggested_version': version
-            })
-    return results
+def extract_suggested_versions(gemini_response):
+    suggestions = {}
+    capture = False
+    for line in gemini_response.splitlines():
+        line = line.strip()
+        if line.lower().startswith("suggested fixes"):
+            capture = True
+            continue
+        if capture and line:
+            match = re.match(r"([a-zA-Z0-9_\-]+)[>=]+([\d\.]+)", line)
+            if match:
+                pkg, version = match.groups()
+                suggestions[pkg] = version
+    return suggestions
 
-def generate_patched_file(deps, check_results):
+def generate_patched_requirements(original_sections, suggested_versions):
     lines = []
-    for res in check_results:
-        lines.append(f"{res['name']}>={res['suggested_version']}")
-    return '\n'.join(lines)
+    for pkg, ver in suggested_versions.items():
+        prefix = original_sections["dependencies"].get(pkg, {}).get("prefix", "==")
+        if ver:
+            lines.append(f"{pkg}{prefix}{ver}")
+        else:
+            lines.append(pkg)
+    return "\n".join(lines)
 
-def execute(plan_tasks, deps):
-    check_results = check_outdated(deps)
-    # Prepare data for Gemini
+
+def generate_updated_package_json(original_sections, suggested_versions):
+    deps = {}
+    dev_deps = {}
+
+    for pkg, ver in suggested_versions.items():
+        if pkg in original_sections.get("dependencies", {}):
+            prefix = original_sections["dependencies"][pkg]["prefix"]
+            deps[pkg] = f"{prefix}{ver}"
+        elif pkg in original_sections.get("devDependencies", {}):
+            prefix = original_sections["devDependencies"][pkg]["prefix"]
+            dev_deps[pkg] = f"{prefix}{ver}"
+
+    return json.dumps({
+        "dependencies": deps,
+        "devDependencies": dev_deps
+    }, indent=2)
+
+
+def execute(plan_tasks, combined_deps, original_sections, file_type):
     parsed_data = "\n".join([
-        f"{r['name']}=={r['version']} (Risk: {r['risk']})" for r in check_results
+        f"{name}=={data['version'] if data['version'] else 'No version'}"
+        for name, data in combined_deps.items()
     ])
-    prompt = f"""
-Analyze these dependencies and versions for security risks:
-{parsed_data}
 
-Output a risk score (0-100), explain risks in plain language, and suggest safe upgrade recommendations.
-"""
+    prompt = f"""
+    You are a dependency risk analyzer.
+
+    For each dependency below:
+    - Identify if the current version has known vulnerabilities.
+    - If vulnerabilities exist, include the CVSS score (0.0-10.0) and severity (Critical/High/Medium/Low).
+    - Explain the risk in terms so non-technical stakeholders can understand and you should also map that to the potential business impact.
+    - Suggest the latest safe/stable version.
+
+    Dependencies:
+    {parsed_data}
+
+    Output must include:
+    1. "Risk Score: <0-100>" as an overall project risk.
+    2. For each dependency:
+       - Current version
+       - CVSS score (if any)
+       - Severity
+       - Risk explanation
+    3. A "Suggested Fixes:" section with package>=version lines.
+    """
+
     gemini_response = call_gemini(prompt)
-    # Extract risk score (simple parse for demo)
-    import re
+
     match = re.search(r"Risk Score: (\d+)", gemini_response)
     risk_score = int(match.group(1)) if match else 50
-    # Generate patched file
-    patched_file = generate_patched_file(deps, check_results)
-    # Build report
-    report = f"Dependency Risk Score: {risk_score}/100\n\n"
-    for res in check_results:
-        report += f"- {res['name']}=={res['version']}\n  Risk: {res['risk']}\n  Recommendation: {res['recommendation']}\n\n"
-    report += f"\nSuggested Fixes (requirements.txt):\n{patched_file}\n\n---\nGemini Analysis:\n{gemini_response}"
-    return report, patched_file, risk_score
+
+    suggested_versions = extract_suggested_versions(gemini_response)
+
+    if file_type == "json":
+        patched_file = generate_updated_package_json(original_sections, suggested_versions)
+    else:
+        patched_file = generate_patched_requirements(original_sections, suggested_versions)
+
+    return gemini_response, patched_file, risk_score

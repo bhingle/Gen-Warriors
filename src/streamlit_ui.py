@@ -47,6 +47,11 @@ def main():
             with open(tmp_file_path, 'r') as f:
                 original_content = f.read()
             st.code(original_content, language="text")
+
+            # Patched File
+            st.subheader("🔧 Patched File Preview")
+            st.code(patched_file, language="json" if uploaded_file.name.endswith(".json") else "text")
+
             
         except Exception as e:
             st.error(f"❌ Error processing file: {str(e)}")

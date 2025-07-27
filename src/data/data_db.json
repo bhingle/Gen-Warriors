@@ -1,31 +1,4 @@
 {
-  "testing/sample_req.txt": {
-    "dependencies": [
-      [
-        "django",
-        "2.2"
-      ],
-      [
-        "requests",
-        "2.10"
-      ],
-      [
-        "numpy",
-        "1.18.0"
-      ],
-      [
-        "flask",
-        "1.0.2"
-      ]
-    ],
-    "risk_score": 50,
-    "report": "Dependency Risk Score: 50/100\n\n- django==2.2\n  Risk: Outdated, no longer receives security patches.\n  Recommendation: Upgrade to django>=4.0.\n\n- requests==2.10\n  Risk: Known CVEs for versions <2.20.\n  Recommendation: Upgrade to requests>=2.31.\n\n- numpy==1.18.0\n  Risk: No known issues.\n  Recommendation: Up to date.\n\n- flask==1.0.2\n  Risk: No known issues.\n  Recommendation: Up to date.\n\n\nSuggested Fixes (requirements.txt):\ndjango>=4.0\nrequests>=2.31\nnumpy>=1.18.0\nflask>=1.0.2\n\n---\nGemini Analysis:\nOkay, let's analyze the security risks and suggest upgrades.\n\n**Risk Analysis:**\n\nHere's a breakdown of the security risks in the provided dependency list:\n\n*   **`django==2.2`:**  This version of Django is severely outdated. Django 2.2 reached its end-of-life (EOL) in April 2022.  This means the Django project no longer provides security patches or bug fixes for it.  Using this version makes your application highly vulnerable to any security flaws discovered *after* that date.  Exploits targeting known vulnerabilities in Django 2.2 are likely publicly available.\n\n*   **`requests==2.10`:**  This version of the `requests` library is *very* old.  Versions of `requests` prior to 2.20 have known Common Vulnerabilities and Exposures (CVEs).  This means security flaws have been identified and documented.  These vulnerabilities can allow attackers to perform actions like gaining unauthorized access to data, injecting malicious code, or causing denial-of-service attacks.\n\n*   **`numpy==1.18.0`:** Based on current information, this version does not pose any known high security risks\n\n*   **`flask==1.0.2`:** Based on current information, this version does not pose any known high security risks\n\n**Risk Score (0-100):**\n\nI would assign a **Risk Score of 85**.\n\n*   **Explanation:** This is a very high risk due to the combination of an outdated Django version (major risk) and a vulnerable `requests` version (significant risk).  Even if `numpy` and `flask` are currently safe, the overall system is compromised.\n\n**Plain Language Explanation of Risks:**\n\nImagine your website is a house.\n\n*   **Outdated Django:** Using `django==2.2` is like leaving your front door unlocked for several years *after* the manufacturer told you the lock was no longer secure. Criminals (hackers) know about the weakness and can easily walk in.\n\n*   **Vulnerable `requests`:** `requests==2.10` is like having a window with a known flaw in the latch. Someone with a little knowledge can easily force it open and get inside your house.\n\n**Safe Upgrade Recommendations:**\n\nThe primary goal is to get to supported and secure versions of your dependencies.  Here's a plan:\n\n1.  **Upgrade Django Immediately:**\n\n    *   **Target:** Upgrade to the latest long-term support (LTS) version of Django (currently Django 4.2).\n    *   **Process:** This is likely to be the most challenging upgrade, and you may need to do it in steps, upgrading to versions such as 3.2 first, running tests at each stage. Django 2.2 to 4.2 is a big leap. This will probably require code changes due to deprecated features and API changes.\n    *   **Testing is Critical:** Thoroughly test your application after *each* upgrade step.  Pay special attention to forms, database interactions, authentication, and anything that uses third-party Django packages.\n    *   **Read the Release Notes:** Carefully review the release notes for each Django version you're upgrading through (2.2 -> 3.2 -> 4.2).  Pay attention to any breaking changes that require code updates.\n\n2.  **Upgrade `requests` Immediately:**\n\n    *   **Target:** Upgrade to the latest version of `requests` (2.31.0 as of right now).\n    *   **Process:**\n        ```bash\n        pip install --upgrade requests\n        ```\n        In most cases, upgrading `requests` is relatively straightforward and shouldn't require major code changes. However, *always* test your application after the upgrade to ensure everything still works as expected.\n    *   **Rationale:** Newer versions contain critical security patches and performance improvements.\n\n3.  **Upgrade `numpy` and `flask` (Consider):**\n\n    *   **Target:** Upgrade to the latest versions of both libraries.\n    *   **Process:**\n        ```bash\n        pip install --upgrade numpy flask\n        ```\n    *   **Rationale:** While there are no *known* vulnerabilities in the specific versions you are using, upgrading keeps you current with bug fixes, performance improvements, and new features.  Plus, it's good practice to maintain dependencies.\n\n**General Advice:**\n\n*   **Use a `requirements.txt` or `Pipfile`:**  Manage your dependencies in a file so that you can easily recreate your environment and ensure consistent versions across development, testing, and production.\n*   **Use a Virtual Environment:**  Isolate your project's dependencies from the system-wide Python installation to avoid conflicts.\n*   **Regularly Update:**  Make it a habit to check for updates to your dependencies on a regular basis (e.g., monthly).  Tools like `pip-review` can help with this.\n*   **Security Scanning:** Consider using tools that automatically scan your dependencies for known vulnerabilities.  Examples include `Safety` and tools integrated into CI/CD pipelines.\n*   **Dependency Pinning:**  Pin your dependencies to specific versions in your `requirements.txt` or `Pipfile` (e.g., `django==4.2.10` instead of just `django==4.2`). This prevents unexpected breakages when new versions are released.  However, *also* regularly update those pinned versions to stay secure.\n\n**Important Note:** Upgrading a large project can be complex.  Plan the upgrades carefully, test thoroughly, and have a rollback plan in case something goes wrong. The order of these upgrades can also matter; start with the less risky ones first. Prioritize addressing the Django vulnerability.\n"
-  },
-  "sdf": {
-    "dependencies": [],
-    "risk_score": 50,
-    "report": "Dependency Risk Score: 50/100\n\n\nSuggested Fixes (requirements.txt):\n\n\n---\nGemini Analysis:\nGemini API error: 404 Client Error: Not Found for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCv4uyv0NOYLwJr_JfNQ41Od2w6gcQVN2g"
-  },
   "/var/folders/04/29g424ss2tgbnll4pqs4y4080000gn/T/tmpa39rdns9sample_req.txt": {
     "dependencies": [
       [
@@ -168,6 +141,118 @@
     "report": "Okay, I will analyze the provided dependencies for known vulnerabilities, explain the risks in a non-technical manner with business impact, and suggest updated versions.\n\nHere's the analysis:\n\n**Overall Risk Score: 75**\n\nThis score represents a moderately high level of risk based on the vulnerabilities identified across the dependencies. A higher score would indicate a more critical and immediate threat.\n\n**Dependency Analysis:**\n\n**1. Django**\n\n*   **Current Version:** 2.2\n*   **CVSS Score:** 9.8 (Example - this can vary slightly depending on the specific vulnerability in 2.2)\n*   **Severity:** Critical\n*   **Risk Explanation:** Django 2.2 has known vulnerabilities that could allow attackers to remotely execute code on your server. This means a malicious actor could potentially gain complete control of your application, access sensitive data (customer information, financial records, etc.), and disrupt your services. Imagine a hacker taking over your website and displaying malicious content or stealing your customer database. This could lead to significant financial losses, reputational damage, legal liabilities, and loss of customer trust.\n*   **Business Impact:** Data breaches, service disruption, reputational damage, financial loss, legal repercussions.\n\n**2. Requests**\n\n*   **Current Version:** 2.10\n*   **CVSS Score:** 8.1\n*   **Severity:** High\n*   **Risk Explanation:** Requests 2.10 has a vulnerability that can expose sensitive data when redirecting HTTP requests to HTTPS. An attacker positioned on the network could intercept the redirect and modify the request to send data to a malicious server instead. The attacker can conduct a Man-in-The-Middle attack. This can compromise user credentials or other confidential information transmitted over the network.\n*   **Business Impact:** Data breaches, loss of customer trust, potential legal liabilities (if sensitive user data is compromised).\n\n**3. NumPy**\n\n*   **Current Version:** 1.18.0\n*   **CVSS Score:** 7.5\n*   **Severity:** High\n*   **Risk Explanation:** NumPy 1.18.0 has vulnerabilities that can lead to denial of service or even arbitrary code execution if a malicious user crafts specific input to the library. This could allow an attacker to crash your application or potentially gain control of the server.\n*   **Business Impact:** Service disruption, potential data breaches (if arbitrary code execution is achieved), reputational damage.\n\n**4. Flask**\n\n*   **Current Version:** 1.0.2\n*   **CVSS Score:** 7.5\n*   **Severity:** High\n*   **Risk Explanation:** Flask 1.0.2 has vulnerabilities that could allow a remote attacker to perform server-side request forgery (SSRF) attacks. This can let them access internal resources, potentially expose sensitive data, or even compromise other systems on your network. Imagine an attacker using your application to scan your internal network for vulnerabilities.\n*   **Business Impact:** Data breaches, access to internal systems, potential compromise of other infrastructure components, reputational damage.\n\n**Suggested Fixes:**\n\n```\ndjango>=3.2\nrequests>=2.28\nnumpy>=1.23\nflask>=2.3\n```\n\n**Important Considerations:**\n\n*   **Testing:**  After upgrading, thoroughly test your application to ensure compatibility and that no new issues have been introduced.\n*   **Dependencies of Dependencies:**  Upgrading these packages might require you to update other dependencies that rely on them.  Carefully review the upgrade process and any potential conflicts.\n*   **Stay Updated:** Regularly check for updates and security advisories for all your dependencies. Implement a process for promptly patching vulnerabilities.\n*   **Specific Vulnerabilities:** The CVSS scores and severities mentioned above are based on generally known vulnerabilities for these versions. The actual risk to *your* application will depend on how you are using these libraries and the specific configurations you have. You should consult detailed vulnerability reports for each dependency to understand the exact nature of the risks.\n*   **Version Choices:** I've suggested generally safe and stable versions. Always check the release notes for the suggested versions to be aware of any breaking changes or new features that might affect your application.  Choose the latest stable release within a major version that you are comfortable migrating to.\n",
     "patched_file": "",
     "scan_date": "2025-07-27T04:08:04.703687+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmplpb26nngsample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": "Risk Score: 75\n\ndjango==2.2\nCVSS score: 9.8\nSeverity: Critical\nRisk explanation: Django 2.2 has known vulnerabilities that could allow attackers to execute arbitrary code or access sensitive data. This could lead to data breaches, service disruption, and reputational damage for the business. Specifically, multiple security flaws have been identified, including potential SQL injection and cross-site scripting (XSS) vulnerabilities. The business impact could range from data loss and financial penalties to complete system compromise.\nSuggested safe version: django>=2.2.28\n\nrequests==2.10\nCVSS score: 8.1\nSeverity: High\nRisk explanation: Requests 2.10 is vulnerable to potential issues like man-in-the-middle attacks. This could allow attackers to intercept and modify sensitive data transmitted between your application and external servers. The business impact could include data breaches, unauthorized access to user accounts, and compromised financial transactions.\nSuggested safe version: requests>=2.31.0\n\nnumpy==1.18.0\nCVSS score: 7.5\nSeverity: High\nRisk explanation: NumPy 1.18.0 has known vulnerabilities that could lead to denial-of-service attacks or arbitrary code execution. While less directly exploitable than some web framework vulnerabilities, a successful attack could still disrupt critical data analysis processes or compromise internal systems relying on NumPy. This poses a risk to business intelligence, scientific computing, and any data-driven decision-making processes.\nSuggested safe version: numpy>=1.26.0\n\nflask==1.0.2\nCVSS score: 7.5\nSeverity: High\nRisk explanation: Flask 1.0.2 has known vulnerabilities including potential for server-side request forgery (SSRF) and other security flaws. These vulnerabilities could allow an attacker to make requests to internal services, potentially exposing sensitive information or compromising other systems. The business impact includes potential data breaches, internal system compromise, and reputational damage.\nSuggested safe version: flask>=2.3.0\n\nSuggested Fixes:\ndjango>=2.2.28\nrequests>=2.31.0\nnumpy>=1.26.0\nflask>=2.3.0\n",
+    "patched_file": "django==2.2.28\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.0",
+    "scan_date": "2025-07-27T18:44:41.573985+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpm5bwm1nzsample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": "Risk Score: 75\n\nDependency: django==2.2\nCVSS score: 9.8\nSeverity: Critical\nRisk explanation: Django 2.2 has known vulnerabilities including potential SQL injection and cross-site scripting (XSS) attacks. An attacker could potentially gain unauthorized access to sensitive data, modify data, or execute arbitrary code on the server. Business impact includes data breaches, financial loss, reputational damage, and legal liabilities due to non-compliance.\nSuggested safe version: Django 2.2.28 (latest 2.2 release)\n\nDependency: requests==2.10\nCVSS score: 8.1\nSeverity: High\nRisk explanation: Requests 2.10 has a vulnerability related to SSL certificate validation. A man-in-the-middle attacker could potentially intercept and modify communications between your application and external servers. Business impact includes data breaches, loss of sensitive information, and potential legal liabilities.\nSuggested safe version: requests>=2.31.0\n\nDependency: numpy==1.18.0\nCVSS score: 7.5\nSeverity: High\nRisk explanation: NumPy 1.18.0 contains a vulnerability related to uncontrolled memory allocation. This can lead to denial of service (DoS) attacks where an attacker could crash your application or server by exhausting its resources. Business impact includes service disruptions, potential data loss, and reputational damage.\nSuggested safe version: numpy>=1.23.5\n\nDependency: flask==1.0.2\nCVSS score: 7.5\nSeverity: High\nRisk explanation: Flask 1.0.2 has vulnerabilities, including potential for server-side request forgery (SSRF) and denial-of-service (DoS) attacks. An attacker could potentially exploit these vulnerabilities to gain unauthorized access to internal resources or disrupt your application's availability. Business impact includes data breaches, service disruptions, and reputational damage.\nSuggested safe version: flask>=2.3.3\n\nSuggested Fixes:\ndjango>=2.2.28\nrequests>=2.31.0\nnumpy>=1.23.5\nflask>=2.3.3\n",
+    "patched_file": "django==2.2.28\nrequests==2.31.0\nnumpy==1.23.5\nflask==2.3.3",
+    "scan_date": "2025-07-27T18:45:00.345974+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpfe76idqjsample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": "Risk Score: 75\n\ndjango==2.2\nCVSS score: 9.8\nSeverity: Critical\nRisk explanation: Django 2.2 has several known vulnerabilities, including potential SQL injection and cross-site scripting (XSS) issues. This means attackers could potentially gain unauthorized access to your database, steal sensitive user data, or inject malicious code into your web pages, impacting data confidentiality, integrity, and availability. Business impact includes potential data breaches, financial loss, reputational damage, and legal liabilities.\nSuggested Fix: django>=3.2\n\nrequests==2.10\nCVSS score: 8.1\nSeverity: High\nRisk explanation: Requests 2.10 has vulnerabilities related to SSL certificate validation and potential man-in-the-middle attacks. Attackers could intercept and modify data transmitted between your application and external services, compromising sensitive information. The business impact involves data breaches, unauthorized access to APIs, and potential reputational damage.\nSuggested Fix: requests>=2.28.0\n\nnumpy==1.18.0\nCVSS score: 7.5\nSeverity: High\nRisk explanation: NumPy 1.18.0 has vulnerabilities related to potential buffer overflows. Malicious actors might exploit it to execute arbitrary code, potentially gaining control of your application or server. Business impact: possible complete system takeover, data breaches, or service disruption.\nSuggested Fix: numpy>=1.23.0\n\nflask==1.0.2\nCVSS score: 7.5\nSeverity: High\nRisk explanation: Flask 1.0.2 has vulnerabilities related to potential information disclosure and cross-site scripting (XSS) attacks. Attackers could potentially steal sensitive information or inject malicious code into your web pages, affecting data confidentiality and integrity. Business impact includes potential data breaches, reputational damage, and legal liabilities.\nSuggested Fix: flask>=2.3.0\n\nSuggested Fixes:\ndjango>=3.2\nrequests>=2.28.0\nnumpy>=1.23.0\nflask>=2.3.0\n",
+    "patched_file": "django==3.2\nrequests==2.28.0\nnumpy==1.23.0\nflask==2.3.0",
+    "scan_date": "2025-07-27T18:50:16.918311+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp9a_2cx6isample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": "Risk Score: 75\n\ndjango==2.2\nCVSS score: 9.8\nSeverity: Critical\nRisk explanation: Django 2.2 has known vulnerabilities that could allow attackers to execute arbitrary code or access sensitive data. This could lead to data breaches, system compromise, and significant reputational damage for the business, potentially impacting customer trust and financial stability.\nSuggested safe/stable version: Latest version not specified as this version is outdated. Upgrade to the latest LTS or a supported version.\n\nrequests==2.10\nCVSS score: 8.1\nSeverity: High\nRisk explanation: Requests 2.10 has vulnerabilities that could allow an attacker to perform man-in-the-middle attacks or other forms of interception. This could compromise sensitive data transmitted through the application, such as user credentials or financial information, leading to data theft and legal repercussions.\nSuggested safe/stable version: Latest version not specified as this version is outdated. Upgrade to the latest safe version.\n\nnumpy==1.18.0\nCVSS score: 7.5\nSeverity: High\nRisk explanation: Numpy 1.18.0 has known vulnerabilities which can lead to denial of service or arbitrary code execution. This could disrupt business operations, causing downtime and potentially allow attackers to gain control of systems leading to financial loss and reputational damage.\nSuggested safe/stable version: Latest version not specified as this version is outdated. Upgrade to the latest safe version.\n\nflask==1.0.2\nCVSS score: 9.8\nSeverity: Critical\nRisk explanation: Flask 1.0.2 has vulnerabilities that could allow attackers to execute arbitrary code. This could result in complete system compromise, data breaches, and significant financial and reputational damage for the organization.\nSuggested safe/stable version: Latest version not specified as this version is outdated. Upgrade to the latest safe version.\n\nSuggested Fixes:\ndjango>=3.2.20\nrequests>=2.31.0\nnumpy>=1.26.0\nflask>=2.3.3\n",
+    "patched_file": "django==3.2.20\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.3",
+    "scan_date": "2025-07-27T18:50:37.185397+00:00",
     "file_type": "txt"
   }
 }

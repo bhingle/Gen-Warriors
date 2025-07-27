@@ -35,12 +35,20 @@ def main():
             # Download patched file
             if patched_file:
                 st.subheader("📥 Download Patched File")
+                
+                # Preserve original extension and add _patched
+                base_name, ext = os.path.splitext(uploaded_file.name)
+                download_name = f"{base_name}_patched{ext}"
+
+                mime_type = "application/json" if ext == ".json" else "text/plain"
+
                 st.download_button(
                     label="Download Patched Dependencies",
                     data=patched_file,
-                    file_name=f"{uploaded_file.name}.patched",
-                    mime="text/plain"
+                    file_name=download_name,
+                    mime=mime_type
                 )
+
             
             # Show file preview
             st.subheader("📋 Original File Preview")

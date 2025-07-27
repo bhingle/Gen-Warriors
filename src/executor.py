@@ -65,6 +65,7 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
     Dependencies:
     {parsed_data}
 
+    Note : output section should be exactly in this format (plain text only, no Markdown, no backticks, no bold)
     Output must include:
     1. "Risk Score: <0-100>" as an overall project risk.
     2. For each dependency:

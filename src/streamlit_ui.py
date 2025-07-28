@@ -5,6 +5,7 @@ import tempfile
 import os
 import re
 from agent import agent_main
+from st_circular_progress import CircularProgress
 
 def highlight_severity(text):
     if "Critical" in text:
@@ -40,39 +41,47 @@ def main():
             
             st.success("✅ Analysis complete!")
 
-            # Risk level indicator with progress
+            # Risk level indicator with circular progress
             st.markdown("### 📊 Risk Level")
             
             # Color and styling based on risk level
             if risk_score >= 81:
-                bg_color = "#ff4757"
-                text_color = "#ffffff"
+                color = "#ff4757"
                 emoji = "🚨"
                 risk_level = "Critical Risk"
-            elif risk_score >= 61 and risk_score <= 80:
-                bg_color = "#ff9800"
-                text_color = "#ffffff"
+            elif risk_score >= 61:
+                color = "#ff9800"
                 emoji = "⚠️"
                 risk_level = "High Risk"
-            elif risk_score >= 41 and risk_score <= 60:
-                bg_color = "#ffc107"
-                text_color = "#333333"
+            elif risk_score >= 41:
+                color = "#ffc107"
                 emoji = "⚡"
                 risk_level = "Medium Risk"
             else:
-                bg_color = "#4caf50"
-                text_color = "#ffffff"
+                color = "#4caf50"
                 emoji = "✅"
                 risk_level = "Low Risk"
             
+            # Circular progress and risk level display
+            # Create circular progress component
+            risk_value = int(risk_score) if risk_score is not None else 0
+            risk_value = max(0, min(100, risk_value))
             
-            # Progress bar and risk level with status
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                st.progress(risk_score / 100)
-                st.markdown(f"**{risk_score}% Risk Level**")
-            with col2:
-                st.markdown(f"**{emoji} {risk_level}**")
+            # Try circular progress first
+            try:
+                circular_progress = CircularProgress(
+                    label=f"{emoji} {risk_level}",
+                    value=risk_value,
+                    key="risk_circular_progress",
+                    size="large",
+                    color=color
+                )
+                circular_progress.st_circular_progress()
+            except Exception as e:
+                st.error(f"Circular progress error: {e}")
+                # Fallback to regular progress bar
+                st.progress(risk_value / 100)
+                st.markdown(f"**{emoji} {risk_level} - {risk_value}%**")
 
             # ✅ Show each dependency as a card
             st.subheader("Dependency Analysis")

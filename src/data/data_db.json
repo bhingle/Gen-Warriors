@@ -1,5 +1,5 @@
 {
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpp14o0pcdsample_req.txt": {
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp1hhqstgssample_req.txt": {
     "dependencies": {
       "dependencies": {
         "django": {
@@ -28,301 +28,7 @@
         "current_version": "2.2",
         "cvss": "9.8",
         "severity": "Critical",
-        "explanation": "Django version 2.2 has known critical vulnerabilities that could allow attackers to execute arbitrary code on your server. This means someone could potentially take complete control of your website and its data, leading to severe data breaches, financial loss, and reputational damage. Immediate action is required.",
-        "fix": "django>=4.2"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "N/A",
-        "severity": "Low",
-        "explanation": "Requests version 2.10 is an older version with potential security concerns, although no actively critical vulnerabilities are registered on NIST. Outdated versions may lack modern security patches, potentially exposing your application to emerging threats and non-optimal security protocols. This represents a low-level risk for future vulnerabilities.",
-        "fix": "requests>=2.31"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Numpy 1.18.0 has some high severity vulnerabilities, possibly leading to denial-of-service or arbitrary code execution in specific scenarios. This could disrupt your services and potentially compromise data if exploited. Upgrade is recommended.",
-        "fix": "numpy>=1.26"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "N/A",
-        "severity": "Medium",
-        "explanation": "Flask version 1.0.2 may have unreported vulnerabilities due to its age. Keeping Flask updated ensures you have the latest security patches that protect against common web application vulnerabilities like cross-site scripting (XSS) or injection attacks. While no specific vulnerability is active, using a current version improves your security posture.",
-        "fix": "flask>=3.0"
-      }
-    ],
-    "patched_file": "django==4.2\nrequests==2.31\nnumpy==1.26\nflask==3.0",
-    "scan_date": "2025-07-27T22:22:41.508290+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp2u6qlay_sample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 75,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2019-14235",
-          "CVE-2019-14233",
-          "CVE-2019-12781",
-          "CVE-2020-9402"
-        ],
-        "severity": "Critical",
-        "explanation": "Django version 2.2 has several known vulnerabilities, including potential SQL injection and denial-of-service attacks. This means an attacker could potentially gain unauthorized access to your database, steal sensitive data, or crash your application. The business impact could range from data breaches and financial loss to reputational damage and service disruption.",
-        "fix": "django>=2.2.28"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "N/A",
-        "cve": [],
-        "severity": "Low",
-        "explanation": "Requests version 2.10 is outdated. While there are no immediately critical vulnerabilities, using such an old version increases the likelihood of compatibility issues and missing security patches that have been addressed in newer versions. This could lead to unexpected application behavior and a higher risk of future exploits. While the severity of direct exploits is low, the accumulated risk warrants updating.",
-        "fix": "requests>=2.31.0"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "cve": [
-          "CVE-2020-15568"
-        ],
-        "severity": "High",
-        "explanation": "Numpy version 1.18.0 has a known vulnerability which could lead to arbitrary code execution. If an attacker manages to exploit this vulnerability, they could potentially take control of your server, leading to a full system compromise and severe data loss. The business impact could be catastrophic, including massive financial losses, legal liabilities, and complete operational shutdown.",
-        "fix": "numpy>=1.18.5"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2023-32243"
-        ],
-        "severity": "Critical",
-        "explanation": "Flask version 1.0.2 has a known critical vulnerability which may allow code execution. An attacker could inject malicious code, leading to arbitrary code execution on the server, potentially compromising sensitive data and system integrity. The business impact could be severe, potentially leading to data breaches, financial losses, and reputational damage.",
-        "fix": "flask>=2.3.3"
-      }
-    ],
-    "patched_file": "django==2.2.28\nrequests==2.31.0\nnumpy==1.18.5\nflask==2.3.3",
-    "scan_date": "2025-07-27T22:52:21.919317+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpjahsjoj1sample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 75,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2019-14235",
-          "CVE-2019-14233",
-          "CVE-2019-14234",
-          "CVE-2020-9402"
-        ],
-        "severity": "Critical",
-        "explanation": "Django version 2.2 has multiple critical vulnerabilities that could allow an attacker to execute arbitrary code or cause a denial of service. This could lead to data breaches, system compromise, and significant disruption to your business operations. The severity is critical, which means that there are known exploits being used in the wild. It is highly recommended to upgrade immediately.",
-        "fix": "django>=2.2.28"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "N/A",
-        "cve": [],
-        "severity": "Low",
-        "explanation": "Requests version 2.10 is severely outdated and may contain unpatched vulnerabilities and lacks modern security features. While there may not be any recent high-severity CVEs associated with this specific version, it is extremely old and potentially vulnerable to a multitude of attacks. Using an old version increases the risk of incompatibility with other components and can make it easier for attackers to find and exploit vulnerabilities. Business impact is relatively low if you're not using it for security-sensitive operations, but upgrade is advised.",
-        "fix": "requests>=2.31.0"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "cve": [
-          "CVE-2020-15568"
-        ],
-        "severity": "High",
-        "explanation": "Numpy version 1.18.0 has a high severity vulnerability. Specifically, there is a potential for denial-of-service due to uncontrolled recursion depth in `npy_parse_number`. This could cause your systems to crash or become unresponsive, disrupting business operations and potentially leading to data loss. It is recommended to upgrade to the latest version.",
-        "fix": "numpy>=1.19.5"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2023-32571",
-          "CVE-2023-32572"
-        ],
-        "severity": "Critical",
-        "explanation": "Flask version 1.0.2 contains multiple critical severity vulnerabilities. This could allow an attacker to cause remote code execution on the server. If you're still using this version it is highly recommended you upgrade to the latest safe version immediately. The latest versions contain security updates that fix these vulnerabilities.",
-        "fix": "flask>=2.3.3"
-      }
-    ],
-    "patched_file": "django==2.2.28\nrequests==2.31.0\nnumpy==1.19.5\nflask==2.3.3",
-    "scan_date": "2025-07-27T22:53:01.499693+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp2b6_5igwsample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 75,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2020-9402",
-          "CVE-2019-14235",
-          "CVE-2019-14233",
-          "CVE-2019-12781"
-        ],
-        "severity": "Critical",
-        "explanation": "Django 2.2 has multiple critical vulnerabilities that could allow an attacker to execute arbitrary code on the server or cause a denial of service. This means someone could potentially take control of your website, steal sensitive data, or crash your site, leading to significant business disruption and data breaches. These vulnerabilities can be exploited remotely, making them a high priority to address. Example: CVE-2020-9402 describes potential for code injection.",
-        "fix": "django>=3.2"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "8.1",
-        "cve": [
-          "CVE-2023-32681",
-          "CVE-2018-18074"
-        ],
-        "severity": "High",
-        "explanation": "Requests 2.10 has some vulnerabilities, including potential for information disclosure and request smuggling. An attacker could potentially intercept or manipulate network requests, leading to data leakage or unauthorized access. Outdated versions can expose the system to request smuggling, a sophisticated form of attack where malicious requests are embedded within legitimate ones. This poses a risk to data integrity and confidentiality. Upgrade immediately to avoid this risk.",
-        "fix": "requests>=2.31.0"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "cve": [
-          "CVE-2020-15313",
-          "CVE-2021-3468",
-          "CVE-2021-3598"
-        ],
-        "severity": "High",
-        "explanation": "Numpy 1.18.0 contains a security vulnerability that can lead to denial of service or potentially arbitrary code execution. If your application relies heavily on numerical computations, this vulnerability could be exploited to crash your system or manipulate data, resulting in incorrect calculations and potential financial losses or reputational damage. Example: CVE-2020-15313: This vulnerability could lead to code execution.",
-        "fix": "numpy>=1.26.0"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "9.8",
-        "cve": [
-          "CVE-2023-49195",
-          "CVE-2023-52175",
-          "CVE-2022-24765",
-          "CVE-2022-23960",
-          "CVE-2021-23389",
-          "CVE-2021-23369"
-        ],
-        "severity": "Critical",
-        "explanation": "Flask 1.0.2 has critical vulnerabilities including potential for Server-Side Request Forgery (SSRF) and other issues. An attacker could exploit these to access internal resources, potentially gaining access to sensitive data or launching attacks on other systems within your network. This can lead to significant data breaches and system compromise. Example: CVE-2023-49195 demonstrates the real world risks.",
-        "fix": "flask>=2.3.3"
-      }
-    ],
-    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.3",
-    "scan_date": "2025-07-27T22:55:54.751402+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpsqyukgbnsample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 75,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "severity": "Critical",
-        "explanation": "Django version 2.2 has several known security vulnerabilities, including potential remote code execution. This means attackers could potentially gain full control of your server and data. Business impact includes data breaches, service disruption, and reputational damage.",
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential for remote code execution and data leakage. A critical vulnerability with CVSS score 9.8, could allow attackers to remotely execute arbitrary code on the server if they can manipulate certain inputs. This could lead to a complete compromise of the server and all data stored within the application. The business impact could include severe data breaches, financial loss due to regulatory fines, reputational damage, and disruption of services.",
         "fix": "django>=3.2"
       },
       {
@@ -330,157 +36,7 @@
         "current_version": "2.10",
         "cvss": "N/A",
         "severity": "Low",
-        "explanation": "Requests version 2.10 is old and may have unpatched vulnerabilities. While there aren't any critical vulnerabilities reported for this version specifically, using outdated software increases the risk of undiscovered security flaws that attackers could exploit. This could lead to data leaks or unauthorized access. This is a low severity because exploiting older versions requires effort.",
-        "fix": "requests>=2.31.0"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Numpy version 1.18.0 has known vulnerabilities including potential for denial of service. Attackers could craft inputs that cause your application to crash, disrupting service for your users. Business impact includes downtime and potential loss of revenue.",
-        "fix": "numpy>=1.26.0"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Flask version 1.0.2 has known vulnerabilities including potential information disclosure. This could allow attackers to gain access to sensitive data, such as user credentials or financial information. Business impact includes compliance violations, legal action, and loss of customer trust.",
-        "fix": "flask>=2.3.0"
-      }
-    ],
-    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.0",
-    "scan_date": "2025-07-27T23:20:40.549424+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp4pb4o87hsample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 50,
-    "report": [],
-    "patched_file": "",
-    "scan_date": "2025-07-27T23:28:10.619311+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp_e6fc9z3sample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 85,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "severity": "Critical",
-        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential SQL injection and cross-site scripting (XSS) flaws. A critical vulnerability with a CVSS score of 9.8 allows a malicious user to potentially execute arbitrary SQL commands if they can manipulate certain input parameters. This means an attacker could gain unauthorized access to sensitive data, modify data, or even take control of the entire database and, by extension, the web application. Business impact includes data breaches, data loss, reputational damage, legal liabilities, and service disruption.",
-        "fix": "django>=3.2"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "N/A",
-        "severity": "Low",
-        "explanation": "Requests version 2.10 has some potential issues around SSL certificate validation and potential information disclosure. While not considered critical, these issues could potentially expose sensitive data or allow man-in-the-middle attacks in specific circumstances. These are considered low impact as it is hard to exploit. The business impact could include minor data breaches, and minor reputational damage.",
-        "fix": "requests>=2.31.0"
-      },
-      {
-        "package": "numpy",
-        "current_version": "1.18.0",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Numpy version 1.18.0 is vulnerable to denial of service (DoS). This could crash the systems dependent on this library. The CVSS score of 7.5 means the vulnerability is easy to exploit. The business impact includes service disruptions, which could further lead to productivity loss, revenue loss, and customer dissatisfaction.",
-        "fix": "numpy>=1.23.0"
-      },
-      {
-        "package": "flask",
-        "current_version": "1.0.2",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Flask version 1.0.2 has a known vulnerability related to Jinja2 template injection. With a CVSS score of 7.5, this vulnerability could allow an attacker to execute arbitrary code on the server if they can control the input to a Jinja2 template. The business impact includes a system compromise, data breaches, reputational damage, and legal liabilities.",
-        "fix": "flask>=2.3.0"
-      }
-    ],
-    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.23.0\nflask==2.3.0",
-    "scan_date": "2025-07-27T23:31:33.454191+00:00",
-    "file_type": "txt"
-  },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpq0kxnjrssample_req.txt": {
-    "dependencies": {
-      "dependencies": {
-        "django": {
-          "prefix": "==",
-          "version": "2.2"
-        },
-        "requests": {
-          "prefix": "==",
-          "version": "2.10"
-        },
-        "numpy": {
-          "prefix": "==",
-          "version": "1.18.0"
-        },
-        "flask": {
-          "prefix": "==",
-          "version": "1.0.2"
-        }
-      },
-      "devDependencies": {}
-    },
-    "risk_score": 85,
-    "report": [
-      {
-        "package": "django",
-        "current_version": "2.2",
-        "cvss": "9.8",
-        "severity": "Critical",
-        "explanation": "Django 2.2 has several known vulnerabilities, including potential SQL injection and denial-of-service attacks. A critical vulnerability (CVSS 9.8) could allow attackers to execute arbitrary SQL commands, potentially leading to data breaches, data corruption, or complete takeover of the application. This is a severe risk. If an attacker gains access, they could steal sensitive customer data (PII, financial information), modify application logic to perform unauthorized transactions, or completely shut down the application, leading to significant financial loss, reputational damage, and legal repercussions due to non-compliance with data protection regulations like GDPR or CCPA.",
-        "fix": "django>=3.2"
-      },
-      {
-        "package": "requests",
-        "current_version": "2.10",
-        "cvss": "7.5",
-        "severity": "High",
-        "explanation": "Requests version 2.10 is vulnerable to potential issues like improper handling of TLS certificate validation. A high severity vulnerability (CVSS 7.5) may lead to man-in-the-middle attacks, where attackers can intercept and modify data transmitted between the application and external services. This could lead to unauthorized access to sensitive data, data corruption, or injection of malicious content. This risk is significant because it compromises the confidentiality and integrity of communications. For a business, that means potential exposure of API keys, customer login details, or payment information being sent to third party providers leading to data theft and financial losses.",
+        "explanation": "Requests version 2.10 is very outdated, there are no recent high severity vulnerabilities reported directly against this version, however, its age means it lacks modern security features and patches present in newer versions, making it vulnerable to exploits and potential denial of service. The business impact is primarily related to increased risk exposure over time due to lack of security updates. While not immediately critical, it's important to update to a supported version to prevent future problems, ensure compatibility with modern security protocols, and avoid using outdated code.",
         "fix": "requests>=2.28"
       },
       {
@@ -488,7 +44,7 @@
         "current_version": "1.18.0",
         "cvss": "7.5",
         "severity": "High",
-        "explanation": "Numpy 1.18.0 has a known vulnerability related to a heap-based buffer overflow. The CVSS score is rated as high (7.5). This means a malicious actor could potentially leverage this vulnerability to perform a denial-of-service attack or, in more severe cases, execute arbitrary code on the server. This could lead to system instability, data breaches, or complete server compromise. The business impact includes potential downtime, loss of data, and significant remediation costs to recover from the attack. Furthermore, any data processed using the compromised NumPy library could be considered tainted and unreliable, impacting downstream analysis and decision-making, particularly if used in critical infrastructure or trading systems.",
+        "explanation": "Numpy version 1.18.0 is vulnerable. A high severity vulnerability, with a CVSS score of 7.5, can lead to potential denial of service and arbitrary code execution. An attacker could exploit this to cause system crashes or potentially gain control of the server. The business impact could include service disruptions, data manipulation, and potential financial loss. It is recommended to upgrade to a patched version.",
         "fix": "numpy>=1.23.0"
       },
       {
@@ -496,15 +52,15 @@
         "current_version": "1.0.2",
         "cvss": "9.8",
         "severity": "Critical",
-        "explanation": "Flask 1.0.2 contains a critical vulnerability (CVSS 9.8) regarding server-side template injection. An attacker could potentially inject malicious code into templates, leading to remote code execution on the server. This allows complete control of the web server. This means an attacker can modify or delete files, install malware, or access sensitive information. The business impact is very high because an attacker could deface the website, steal customer data (credentials, payment details), or use the server to launch attacks on other systems, resulting in significant financial losses, legal liabilities, and reputational damage.",
-        "fix": "flask>=2.3.0"
+        "explanation": "Flask version 1.0.2 has multiple vulnerabilities, including a critical security flaw (CVSS 9.8) that could lead to remote code execution in certain configurations, especially when combined with vulnerable WSGI servers or other components. This means an attacker could potentially run malicious code on the server, leading to a complete server compromise. This could cause a severe data breach, potentially exposing sensitive customer or business data, or even render the entire system inoperable, causing substantial financial loss and reputational damage, and resulting in regulatory penalties.",
+        "fix": "flask>=2.2"
       }
     ],
-    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23.0\nflask==2.3.0",
-    "scan_date": "2025-07-27T23:44:55.024158+00:00",
+    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23.0\nflask==2.2",
+    "scan_date": "2025-07-28T03:19:25.268570+00:00",
     "file_type": "txt"
   },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp_a6py_m7sample_req.txt": {
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpzrfim9ufsample_req.txt": {
     "dependencies": {
       "dependencies": {
         "django": {
@@ -533,7 +89,7 @@
         "current_version": "2.2",
         "cvss": "9.8",
         "severity": "Critical",
-        "explanation": "Django version 2.2 has known critical vulnerabilities. These vulnerabilities could allow an attacker to remotely execute code on the server, potentially leading to a complete compromise of your application and data. This means an attacker could steal sensitive user data, modify information, or even shut down the entire system. The business impact could include significant financial losses due to data breaches, legal liabilities, reputational damage leading to loss of customers, and disruption of essential services.",
+        "explanation": "Django version 2.2 has known critical vulnerabilities. A malicious actor could exploit these vulnerabilities to inject code or manipulate data on your website, potentially leading to data breaches, unauthorized access, or defacement of your site. This could damage your reputation, expose sensitive user information, and lead to financial losses due to legal repercussions, recovery costs, and loss of customer trust. It's like leaving the front door of your business wide open for criminals.",
         "fix": "django>=3.2"
       },
       {
@@ -541,7 +97,129 @@
         "current_version": "2.10",
         "cvss": "N/A",
         "severity": "Low",
-        "explanation": "Requests version 2.10 is vulnerable to a potential issue where it might mishandle certain types of server responses, which could lead to information disclosure. The risk is considered low. The potential business impact would be limited but could expose internal data to third party.",
+        "explanation": "Requests version 2.10 is quite old and likely contains vulnerabilities that have been addressed in newer versions. While there might not be actively exploited vulnerabilities, using outdated software increases the risk of potential security breaches. Over time, newly discovered vulnerabilities in old versions do surface and the risk will increase. It's like using an outdated browser that is vulnerable to drive-by downloads.",
+        "fix": "requests>=2.28"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has known vulnerabilities, including potential arbitrary code execution. If exploited, an attacker could run malicious commands on the server or device running your application. This could lead to complete system compromise, data theft, or denial of service. Imagine allowing a hacker to remotely control your company's computers.",
+        "fix": "numpy>=1.23.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Flask version 1.0.2 has known vulnerabilities that could allow an attacker to perform server-side request forgery (SSRF) attacks. In cases where Flask is fronting a database or other internal system, the server could be used to pivot to internal systems and perform unauthorized tasks. This could lead to accessing sensitive data stored internally or performing tasks that should not be allowed. It's like allowing someone to use your company's internal email system to send out phishing campaigns.",
+        "fix": "flask>=2.3"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23.0\nflask==2.3",
+    "scan_date": "2025-07-28T03:21:03.482271+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp64coh7absample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 85,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential SQL injection and cross-site scripting (XSS) attacks. A successful exploit could allow attackers to steal sensitive data, manipulate website content, or execute arbitrary code on the server. This poses a significant risk to data confidentiality, integrity, and availability. Business impact: A data breach could lead to significant financial losses due to regulatory fines (e.g., GDPR), legal action, loss of customer trust, and damage to the company's reputation. Website defacement or service disruption could also result in loss of revenue and customer dissatisfaction.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "N/A",
+        "severity": "Low",
+        "explanation": "Requests version 2.10 is quite old and might have unpatched vulnerabilities. Although no critical vulnerabilities are immediately apparent in public databases for this exact version, using outdated libraries increases the risk of encountering compatibility issues and potential security flaws that may have been addressed in later versions. Business impact: While the immediate risk might seem low, relying on unsupported libraries can lead to unexpected failures and increased maintenance costs in the long run. Incompatibilities with other systems could disrupt business processes and lead to downtime.",
+        "fix": "requests>=2.28"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has known vulnerabilities related to potential denial-of-service attacks and code execution. An attacker could exploit these vulnerabilities to crash the system or execute malicious code. Business impact: System crashes can lead to loss of productivity and potential data loss, resulting in financial losses and damage to reputation. Remote code execution could allow attackers to take complete control of the system, leading to a major security breach.",
+        "fix": "numpy>=1.23.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Flask version 1.0.2 has known vulnerabilities including potential for server-side request forgery (SSRF) and cross-site scripting (XSS) attacks depending on how it's used. An attacker could exploit these vulnerabilities to gain unauthorized access to internal resources or inject malicious code into the application. Business impact: SSRF attacks could expose sensitive internal data or allow attackers to control internal systems. XSS attacks could allow attackers to steal user credentials or deface the website, leading to loss of customer trust and potential financial losses.",
+        "fix": "flask>=2.3.0"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23.0\nflask==2.3.0",
+    "scan_date": "2025-07-28T03:23:08.919009+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpdt53d2u2sample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 85,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential remote code execution and denial-of-service attacks. A critical vulnerability could allow a malicious actor to gain complete control of your server, potentially stealing sensitive data, defacing your website, or disrupting your services. This could lead to significant financial losses, reputational damage, and legal repercussions due to data breaches or service outages. If you process payments, sensitive customer data or intellectual property this is high impact to your business.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "8.1",
+        "severity": "High",
+        "explanation": "Requests version 2.10 has known vulnerabilities related to potential man-in-the-middle attacks and other security issues. This could allow an attacker to intercept sensitive data transmitted through your application, such as user credentials or API keys. This poses a risk if your application handles any sensitive data as interception can lead to serious breaches. Financial penalties, loss of customer trust, and disruption of business operations could be impact.",
         "fix": "requests>=2.31.0"
       },
       {
@@ -549,7 +227,7 @@
         "current_version": "1.18.0",
         "cvss": "7.5",
         "severity": "High",
-        "explanation": "Numpy version 1.18.0 is vulnerable and may allow an attacker to cause a denial of service by crashing the system or to potentially execute arbitrary code. This could halt business operations dependent on data processing and analytics using Numpy, and can even lead to reputational harm.",
+        "explanation": "Numpy version 1.18.0 has known vulnerabilities, potentially leading to denial-of-service or arbitrary code execution. This could be exploited to crash your application or even gain unauthorized access to your systems. High-performance computing and data science depend on this library. A crash can halt operations which results in time and money lost.",
         "fix": "numpy>=1.26.0"
       },
       {
@@ -557,15 +235,15 @@
         "current_version": "1.0.2",
         "cvss": "7.5",
         "severity": "High",
-        "explanation": "Flask version 1.0.2 has known vulnerabilities which can permit a malicious user to craft requests that can potentially lead to Cross Site Scripting (XSS), enabling them to inject malicious scripts into the application's web pages. This could result in theft of user credentials, session hijacking, and defacement of the website. Potential business impact includes damage to brand reputation, loss of customer trust, and potential legal repercussions.",
-        "fix": "flask>=2.3.3"
+        "explanation": "Flask version 1.0.2 has known vulnerabilities including potential for server-side request forgery (SSRF). An attacker could potentially use your server to make requests to internal or external systems, potentially accessing sensitive data or launching attacks on other services. Exploits of this nature on production environments can lead to downtime and data breaches.",
+        "fix": "flask>=2.3.0"
       }
     ],
-    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.3",
-    "scan_date": "2025-07-27T23:49:37.198874+00:00",
+    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.0",
+    "scan_date": "2025-07-28T03:31:30.370407+00:00",
     "file_type": "txt"
   },
-  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpynw6d4r7sample_req.txt": {
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp6y3swy91sample_req.txt": {
     "dependencies": {
       "dependencies": {
         "django": {
@@ -594,36 +272,341 @@
         "current_version": "2.2",
         "cvss": "9.8",
         "severity": "Critical",
-        "explanation": "Django version 2.2 has several known vulnerabilities, including potential remote code execution. A malicious actor could exploit these flaws to gain complete control of your server and the data it holds. This could lead to data breaches, financial losses due to regulatory fines, and significant reputational damage if customer data is compromised.",
-        "fix": "django>=4.2"
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential for remote code execution and denial of service. A critical vulnerability (CVSS 9.8) could allow an attacker to execute arbitrary code on the server, potentially taking complete control. This could lead to data breaches, system compromise, and significant reputational damage. The business impact would be severe, potentially halting operations and resulting in large financial losses due to incident response, legal ramifications, and loss of customer trust.",
+        "fix": "django>=3.2"
       },
       {
         "package": "requests",
         "current_version": "2.10",
         "cvss": "N/A",
         "severity": "N/A",
-        "explanation": "Requests version 2.10 is very old and may contain undiscovered vulnerabilities or be incompatible with newer security protocols. While no actively known vulnerabilities with high severity are currently reported, using such an outdated library significantly increases the risk of future exploits. This could result in unauthorized access to internal systems if requests are mishandled or used to interact with vulnerable external services, potentially leading to data leaks or service disruptions. Older version lacks support for modern TLS standards, making communication less secure and can expose your systems to man-in-the-middle attacks.",
-        "fix": "requests>=2.31"
+        "explanation": "Requests version 2.10 is very old and likely contains vulnerabilities due to its age. While specific CVEs for that exact version may not be readily available, its age makes it a high-risk dependency. Using outdated libraries means you are missing out on security patches and improvements found in newer versions. This increases the chances of attackers exploiting known weaknesses or discovering new ones within your system. This can lead to potential data leakage, unauthorized access, or system disruptions. The business impact includes potential fines for non-compliance with data protection regulations, damage to your company's reputation, and loss of customer trust.",
+        "fix": "requests>=2.28"
       },
       {
         "package": "numpy",
         "current_version": "1.18.0",
         "cvss": "7.5",
         "severity": "High",
-        "explanation": "Numpy 1.18.0 has known vulnerabilities that could lead to denial of service or arbitrary code execution. If an attacker can craft malicious input to functions that depend on Numpy, they might be able to crash your application or even run commands on your server. This could disrupt your services, corrupt data used in scientific computations or machine learning models, or enable attackers to escalate their privileges within your infrastructure, causing substantial business disruption and potential financial losses.",
-        "fix": "numpy>=1.26"
+        "explanation": "Numpy version 1.18.0 has known vulnerabilities, including potential denial of service and arbitrary code execution. A High severity vulnerability (CVSS 7.5) could allow an attacker to cause the application to crash or, in some cases, even execute malicious code. This poses a risk to the availability and integrity of your systems. The business impact includes application downtime leading to lost revenue, potential data corruption, and reputational damage if an attacker is able to leverage the vulnerability.",
+        "fix": "numpy>=1.23"
       },
       {
         "package": "flask",
         "current_version": "1.0.2",
         "cvss": "7.5",
         "severity": "High",
-        "explanation": "Flask version 1.0.2 has known security vulnerabilities, including potential for server-side request forgery (SSRF). An attacker could potentially use your server to make requests to internal or external resources, bypassing security controls and potentially gaining access to sensitive data or internal systems. If the application allows users to supply URLs, they could use this to access internal network resources or services that are not meant to be exposed, enabling lateral movement within the network and the theft of critical business data.",
-        "fix": "flask>=3.0"
+        "explanation": "Flask version 1.0.2 contains vulnerabilities, potentially allowing for server-side request forgery (SSRF) and other exploits. A high-severity vulnerability (CVSS 7.5) means an attacker could potentially use your application to make requests to internal or external resources, leading to information disclosure or even further compromise of your systems. The business impact includes potential data breaches, exposure of sensitive internal resources, and damage to your company's reputation should an attacker be able to exploit these weaknesses to gain access to restricted areas.",
+        "fix": "flask>=2.3"
       }
     ],
-    "patched_file": "django==4.2\nrequests==2.31\nnumpy==1.26\nflask==3.0",
-    "scan_date": "2025-07-27T23:51:21.114259+00:00",
+    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23\nflask==2.3",
+    "scan_date": "2025-07-28T03:38:10.856921+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpos9rr4cesample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 85,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential SQL injection and cross-site scripting (XSS) issues. A critical vulnerability could allow attackers to execute arbitrary code or gain unauthorized access to sensitive data. This could lead to data breaches, financial loss, and reputational damage for the business, potentially impacting customer trust and requiring costly incident response efforts.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "N/A",
+        "severity": "Low",
+        "explanation": "Requests version 2.10 is outdated and has known security vulnerabilities that could allow attackers to intercept or manipulate network traffic. This could lead to information disclosure or denial-of-service attacks, potentially disrupting business operations and exposing sensitive data. Upgrading is essential to mitigate potential risks and ensure the security of network communications. There might not be documented CVSS scores but it still a very outdated library that has known issues.",
+        "fix": "requests>=2.28.0"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy 1.18.0 has known vulnerabilities, including potential denial-of-service (DoS) attacks and code execution flaws. An attacker could exploit these vulnerabilities to crash the application or execute arbitrary code on the server. This could lead to service outages, data breaches, and reputational damage for the business, potentially impacting customer experience and requiring significant remediation efforts.",
+        "fix": "numpy>=1.23.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Flask version 1.0.2 is vulnerable to server-side template injection. This allows attackers to execute arbitrary code on the server, leading to data breaches, system compromise, or denial-of-service attacks. This poses a severe risk to the business, potentially resulting in significant financial losses, legal liabilities, and reputational damage, requiring immediate action to mitigate.",
+        "fix": "flask>=2.0"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.28.0\nnumpy==1.23.0\nflask==2.0",
+    "scan_date": "2025-07-28T03:47:50.832344+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp3ua5wxfgsample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has several known critical vulnerabilities. A remote attacker could potentially execute arbitrary code on the server. This could lead to complete system compromise, including data breaches, service disruption, and reputational damage. Business impact includes potential loss of sensitive customer data, financial losses due to legal repercussions and incident response costs, and significant damage to the organization's brand and trust. The older version also makes the application susceptible to denial-of-service attacks. Maintaining an outdated version creates significant risk exposure.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "8.1",
+        "severity": "High",
+        "explanation": "Requests version 2.10 has a known high severity vulnerability where it could be susceptible to man-in-the-middle attacks due to improper handling of SSL certificates. An attacker could intercept sensitive data transmitted between the application and external services. The business impact includes potential compromise of user credentials, financial data, and other confidential information. This can lead to significant financial losses due to fraud, regulatory fines, and remediation efforts. The compromised trust can severly impact business.",
+        "fix": "requests>=2.28"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has multiple potential vulnerabilities, including denial of service and arbitrary code execution due to memory corruption. An attacker could exploit these vulnerabilities to crash the application or gain control of the server. Business impact includes service downtime, potential data loss, and reputational damage. If numpy is used in data processing or machine learning, this could affect the reliability and security of related business processes, leading to incorrect decisions and financial losses.",
+        "fix": "numpy>=1.23.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Flask version 1.0.2 has potential vulnerabilities, including server-side request forgery (SSRF). This could allow an attacker to make requests to internal services, potentially exposing sensitive data or allowing them to pivot to other systems. The business impact includes potential compromise of internal infrastructure, data breaches, and disruption of services. This can lead to financial losses, legal repercussions, and significant reputational damage.",
+        "fix": "flask>=2.3.0"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.28\nnumpy==1.23.0\nflask==2.3.0",
+    "scan_date": "2025-07-28T03:49:17.374892+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmp4tz4p74_sample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 85,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django 2.2 has known critical vulnerabilities. A remote attacker could potentially execute arbitrary code on your server if you are using a vulnerable configuration. This could lead to a complete takeover of your web application and data. This could result in severe data breaches, financial losses due to downtime, and reputational damage.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "N/A",
+        "severity": "Low",
+        "explanation": "Requests version 2.10 is an older version and may have some known low severity vulnerabilities that could be exploited for denial of service or information disclosure. While not critical, using outdated packages can increase the overall risk of your application. An attacker could exploit these vulnerabilities to disrupt your service or gain unauthorized access to sensitive information. This can lead to service disruptions and minor data leaks.",
+        "fix": "requests>=2.31.0"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has several security vulnerabilities that could allow an attacker to execute arbitrary code. Exploitation of these vulnerabilities could compromise the integrity of numerical computations and data analysis performed by your application. This could lead to incorrect or manipulated data, resulting in flawed business decisions and potentially financial losses.",
+        "fix": "numpy>=1.23.5"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Flask 1.0.2 has known vulnerabilities that could allow for server-side request forgery (SSRF) or other attacks. An attacker could potentially leverage these flaws to access internal resources, manipulate data, or compromise the server. This can lead to unauthorized access to sensitive internal data, data breaches, and potential financial losses due to fraudulent activities.",
+        "fix": "flask>=2.3.3"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.23.5\nflask==2.3.3",
+    "scan_date": "2025-07-28T03:53:39.598672+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmplcxjb9o9sample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has known critical vulnerabilities that could allow attackers to execute arbitrary code on your server. This could lead to a complete compromise of your system, allowing attackers to steal sensitive data, modify your website, or even shut it down. Business impact: Data breaches leading to financial loss and reputational damage, service disruption resulting in loss of revenue and customer trust, legal repercussions due to non-compliance. Example: An attacker could gain access to user credentials or financial data stored in your database.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "N/A",
+        "severity": "N/A",
+        "explanation": "The requests version 2.10 has not been found to have any recent high severity vulnerabilities. While there may be older or less critical vulnerabilities, upgrading will give you the benefit of new features, performance improvements, and potentially better security. Business impact: Although the risk is low, outdated libraries may not support modern security protocols, increasing the potential for man-in-the-middle attacks or other security breaches.",
+        "fix": "requests>=2.31.0"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has known high severity vulnerabilities related to potential code execution and denial-of-service attacks. Attackers could exploit these to crash your applications or even run malicious code on your servers. Business impact: Potential data corruption or loss, service outages leading to financial loss, and reputational damage if attackers gain unauthorized access to your systems through this vulnerability.",
+        "fix": "numpy>=1.26.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Flask version 1.0.2 has known high severity vulnerabilities that could allow attackers to perform server-side request forgery (SSRF) or other malicious actions. This means an attacker might be able to trick your server into making requests to internal or external systems, potentially exposing sensitive data or compromising other services. Business impact: Exposure of internal resources, unauthorized access to sensitive data, and potential for further attacks that could disrupt business operations or lead to financial loss.",
+        "fix": "flask>=2.3.3"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.31.0\nnumpy==1.26.0\nflask==2.3.3",
+    "scan_date": "2025-07-28T03:57:23.092451+00:00",
+    "file_type": "txt"
+  },
+  "C:\\Users\\dhwan\\AppData\\Local\\Temp\\tmpdzs54noksample_req.txt": {
+    "dependencies": {
+      "dependencies": {
+        "django": {
+          "prefix": "==",
+          "version": "2.2"
+        },
+        "requests": {
+          "prefix": "==",
+          "version": "2.10"
+        },
+        "numpy": {
+          "prefix": "==",
+          "version": "1.18.0"
+        },
+        "flask": {
+          "prefix": "==",
+          "version": "1.0.2"
+        }
+      },
+      "devDependencies": {}
+    },
+    "risk_score": 75,
+    "report": [
+      {
+        "package": "django",
+        "current_version": "2.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Django version 2.2 has multiple known vulnerabilities, including potential for remote code execution and data injection. A critical vulnerability with CVSS score 9.8 allows attackers to execute arbitrary code on the server. This means someone could take complete control of your application and its data. This could lead to data breaches, financial loss, and severe reputational damage if sensitive user information is compromised, or the application is used for malicious purposes such as serving malware or launching attacks against other systems. Financial losses can occur due to fines from regulatory bodies, incident response costs, and lost business due to system downtime and customer distrust.",
+        "fix": "django>=3.2"
+      },
+      {
+        "package": "requests",
+        "current_version": "2.10",
+        "cvss": "N/A",
+        "severity": "N/A",
+        "explanation": "Requests version 2.10 is very old and likely contains vulnerabilities due to its age. While there aren't specific high-severity CVEs readily available for *that exact version*, the age of the package suggests it's missing security patches and improvements present in newer versions. Using it increases the risk of exploitation from common web application vulnerabilities and makes your application non-compliant with security best practices. A successful exploit could disrupt service, compromise data, and damage your company's reputation. Outdated libraries are often targeted by attackers because they provide known and easily exploitable weaknesses.",
+        "fix": "requests>=2.28.0"
+      },
+      {
+        "package": "numpy",
+        "current_version": "1.18.0",
+        "cvss": "7.5",
+        "severity": "High",
+        "explanation": "Numpy version 1.18.0 has known vulnerabilities. A high severity vulnerability allows for potential arbitrary code execution if specially crafted data is processed. An attacker could leverage this to gain control over the server running the application. This can lead to unauthorized access to sensitive data, disruption of services, and potential financial losses. The impact would be particularly severe if the application handles financial data, health records, or other regulated information, potentially leading to significant fines and legal repercussions.",
+        "fix": "numpy>=1.23.0"
+      },
+      {
+        "package": "flask",
+        "current_version": "1.0.2",
+        "cvss": "9.8",
+        "severity": "Critical",
+        "explanation": "Flask version 1.0.2 has known vulnerabilities, including a critical security flaw that could allow for server-side template injection (SSTI). An attacker could exploit this vulnerability to execute arbitrary code on the server. This means an attacker can potentially gain full control of your server. This could lead to data breaches, service outages, and severe reputational damage. For example, if user credentials are leaked due to the vulnerability, attackers may gain access to other systems connected with current application and will be able to cause further damage.",
+        "fix": "flask>=2.3.0"
+      }
+    ],
+    "patched_file": "django==3.2\nrequests==2.28.0\nnumpy==1.23.0\nflask==2.3.0",
+    "scan_date": "2025-07-28T04:20:47.615189+00:00",
     "file_type": "txt"
   }
 }

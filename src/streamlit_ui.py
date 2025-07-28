@@ -19,8 +19,6 @@ def highlight_severity(text):
         return f"<span style='color:white'>{text}</span>"
     return text
 
-
-
 def main():
     st.title("🔒 AI Open-Source Dependency Guardian")
     st.markdown("Scan your dependency files for security risks and get AI-powered recommendations!")
@@ -42,9 +40,39 @@ def main():
             
             st.success("✅ Analysis complete!")
 
-            # ✅ Show overall risk score
-            st.subheader("📊 Overall Risk Score")
-            st.metric("Risk Score", f"{risk_score}/100")
+            # Risk level indicator with progress
+            st.markdown("### 📊 Risk Level")
+            
+            # Color and styling based on risk level
+            if risk_score >= 81:
+                bg_color = "#ff4757"
+                text_color = "#ffffff"
+                emoji = "🚨"
+                risk_level = "Critical Risk"
+            elif risk_score >= 61 and risk_score <= 80:
+                bg_color = "#ff9800"
+                text_color = "#ffffff"
+                emoji = "⚠️"
+                risk_level = "High Risk"
+            elif risk_score >= 41 and risk_score <= 60:
+                bg_color = "#ffc107"
+                text_color = "#333333"
+                emoji = "⚡"
+                risk_level = "Medium Risk"
+            else:
+                bg_color = "#4caf50"
+                text_color = "#ffffff"
+                emoji = "✅"
+                risk_level = "Low Risk"
+            
+            
+            # Progress bar and risk level with status
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.progress(risk_score / 100)
+                st.markdown(f"**{risk_score}% Risk Level**")
+            with col2:
+                st.markdown(f"**{emoji} {risk_level}**")
 
             # ✅ Show each dependency as a card
             st.subheader("Dependency Analysis")

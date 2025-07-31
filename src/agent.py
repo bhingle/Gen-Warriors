@@ -11,20 +11,24 @@ def merge_all_deps(parsed_data):
     combined.update(parsed_data.get("devDependencies", {}))
     return combined
 
-def agent_main(dep_file_path):
+def agent_main(file_key,dep_file_path):
     with open(dep_file_path, "r") as f:
         content = f.read()
 
     parsed_data, file_type = parse_dependency_file(dep_file_path, content)
     combined_deps = merge_all_deps(parsed_data)
 
-    last_scan = retrieve_memory(dep_file_path)
+    last_scan = retrieve_memory(file_key)
     plan_tasks = plan(combined_deps, last_scan)
 
     parsed_results, patched_file, risk_score = execute(plan_tasks, combined_deps, parsed_data, file_type)
 
+    improvement = None
+    if last_scan and "risk_score" in last_scan:
+        previous_score = last_scan["risk_score"]
+        improvement = previous_score - risk_score
 
-    store_memory(dep_file_path, {
+    store_memory(file_key, {
         'dependencies': parsed_data,
         'risk_score': risk_score,
         'report': parsed_results,
@@ -34,4 +38,4 @@ def agent_main(dep_file_path):
     })
 
 
-    return parsed_results, patched_file, risk_score
+    return parsed_results, patched_file, risk_score, improvement

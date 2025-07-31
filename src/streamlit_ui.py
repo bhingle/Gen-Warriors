@@ -7,6 +7,11 @@ import base64
 from agent import agent_main
 from st_circular_progress import CircularProgress
 
+st.markdown("""
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+""", unsafe_allow_html=True)
+
 # ✅ Convert video to base64
 def get_video_base64(video_path):
     with open(video_path, "rb") as f:
@@ -121,7 +126,7 @@ def main():
         
         try:
             with st.spinner("🔍 Analyzing dependencies..."):
-                parsed_results, patched_file, risk_score = agent_main(tmp_file_path)
+                parsed_results, patched_file, risk_score, improvement = agent_main(uploaded_file.name,tmp_file_path)
             
             st.success("✅ Analysis complete!")
 
@@ -130,11 +135,11 @@ def main():
             
             # Color and styling based on risk level
             if risk_score >= 81:
-                color = "#ff4757"
+                color = "#fa1a2c"
                 emoji = "🚨"
                 risk_level = "Critical Risk"
             elif risk_score >= 61:
-                color = "#ff9800"
+                color = "#ff4901"
                 emoji = "⚠️"
                 risk_level = "High Risk"
             elif risk_score >= 41:
@@ -143,24 +148,52 @@ def main():
                 risk_level = "Medium Risk"
             else:
                 color = "#4caf50"
-                emoji = "✅"
+                emoji = "🛡️"
                 risk_level = "Low Risk"
             
             # Circular progress and risk level display
             # Create circular progress component
-            risk_value = int(risk_score) if risk_score is not None else 0
-            risk_value = max(0, min(100, risk_value))
+            risk_value = max(0, min(100, int(risk_score)))
             
             # Try circular progress first
             try:
                 circular_progress = CircularProgress(
                     label=f"{emoji} {risk_level}",
                     value=risk_value,
-                    key="risk_circular_progress",
+                    key=f"risk_circular_progress_{uploaded_file.name}_{risk_value}",
                     size="large",
                     color=color
                 )
                 circular_progress.st_circular_progress()
+                if improvement is not None:
+                    if improvement > 0:
+                        st.markdown(
+                            """
+                            <div style='text-align:center; color:#4caf50; font-weight:bold;'>
+                                <i class="fas fa-arrow-up"></i> Improved by {0} points since last scan!
+                            </div>
+                            """.format(improvement),
+                            unsafe_allow_html=True
+                        )
+                    elif improvement < 0:
+                        st.markdown(
+                            """
+                            <div style='text-align:center; color:#ff4757; font-weight:bold;'>
+                                <i class="fas fa-arrow-down"></i> Increased by {0} points since last scan!
+                            </div>
+                            """.format(abs(improvement)),
+                            unsafe_allow_html=True
+                        )
+                    else:
+                        st.markdown(
+                            "<div style='text-align:center; color:#ffc107; font-weight:bold; margin-top:8px;'>📊 No change since last scan.</div>",
+                            unsafe_allow_html=True
+                        )
+                else:
+                    st.markdown(
+                        "<span style='color: #00bcd4; text-align:center;font-weight: bold;'>📌 First scan - baseline risk score set.</span>",
+                        unsafe_allow_html=True
+                    )
             except Exception as e:
                 st.error(f"Circular progress error: {e}")
                 # Fallback to regular progress bar
@@ -182,17 +215,29 @@ def main():
             # ✅ Download patched file
             if patched_file:
                 base_name, ext = os.path.splitext(uploaded_file.name)
-                download_name = f"{base_name}_patched{ext}"
+                download_name = f"{base_name}{ext}"
                 mime_type = "application/json" if ext == ".json" else "text/plain"
 
                 st.subheader("📥 Download Patched File")
-                st.download_button(
-                    label="Download Patched Dependencies",
-                    data=patched_file,
-                    file_name=download_name,
-                    icon=":material/download:",
-                    mime=mime_type
-                )
+                b64_file = base64.b64encode(patched_file.encode()).decode()
+
+                download_link = f"""
+                    <a href="data:{mime_type};base64,{b64_file}" 
+                    download="{download_name}" 
+                    style="
+                            display:inline-block;
+                            padding:10px 20px;
+                            background-color:green;
+                            color:white;
+                            font-weight:bold;
+                            border-radius:8px;
+                            text-decoration:none;">
+                            <i class="fa-solid fa-download fa-bounce" style="color: #ffffff;margin-right:8px;"></i>
+                            Download Patched Dependencies
+                    </a>
+                """
+
+                st.markdown(download_link, unsafe_allow_html=True)
 
             # ✅ Side-by-side original and patched file preview
             st.subheader("📂 File Comparison")
@@ -210,22 +255,6 @@ def main():
             st.error(f"❌ Error processing file: {str(e)}")
         finally:
             os.unlink(tmp_file_path)
-    
-    # with st.sidebar:
-    #     st.header("ℹ️ About")
-    #     st.markdown("""
-    #     This tool helps you:
-    #     - 🔍 Detect outdated packages
-    #     - ⚠️ Identify security vulnerabilities  
-    #     - 🤖 Get AI-powered recommendations
-    #     - 📝 Generate patched dependency files
-    #     """)
-        
-    #     st.header("📋 Supported Files")
-    #     st.markdown("""
-    #     - `requirements.txt` (Python)
-    #     - `package.json` (Node.js)
-    #     """)
 
 if __name__ == "__main__":
     main()

@@ -59,8 +59,20 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
     For each dependency below:
     - Identify if the current version has known vulnerabilities, check public databases (e.g., National Vulneability Database, Open Source Vulneabilities).
     - If multiple vulnerabilities exist for a version, use the highest CVSS score and the corresponding severity.
+    - If the current version is equal to or greater than the recommended safe version and no known vulnerabilities exist, mark the risk as "None", set CVSS to "0.0", severity to "Low", and explain that it's up to date and secure.
     - Explain the risk in terms so non-technical stakeholders can understand and you should also map that to the potential business impact.Explain business impact in a bit detail.
     - Suggest the latest safe/stable version.
+
+
+    Risk Score Calculation Rules:
+    - Start with 0.
+    - For each vulnerable dependency, add a weight:
+        - CVSS >= 9.0 → +25 points
+        - CVSS >= 7.0 → +20 points
+        - CVSS >= 4.0 → +10 points
+        - CVSS < 4.0  → +5 points
+    - Normalize to 0-100.
+    - If all dependencies are safe, set risk_score = 0.
 
     Dependencies:
     {parsed_data}
@@ -103,14 +115,22 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
 
     risk_score = parsed.get("risk_score", 50)
     parsed_results = parsed.get("dependencies", [])
+    print("DEBUG Raw Gemini Response:", gemini_response)
 
     # ✅ Build suggested_versions dict
     suggested_versions = {}
     for item in parsed.get("suggested_fixes", []):
         if ">=" in item:
             pkg, ver = item.split(">=")
-            suggested_versions[pkg.strip()] = ver.strip()
-
+        elif "=" in item:
+            pkg, ver = item.split("=")
+        else:
+            continue
+        suggested_versions[pkg.strip()] = ver.strip()
+    
+    print("DEBUG Parsed Data:", parsed_data)
+    print("DEBUG Combined Deps:", combined_deps)
+    print("DEBUG Suggested Versions:", suggested_versions)
     if file_type == "json":
         patched_file = generate_updated_package_json(original_sections, suggested_versions)
     else:

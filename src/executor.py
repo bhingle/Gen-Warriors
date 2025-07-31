@@ -115,7 +115,6 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
 
     risk_score = parsed.get("risk_score", 50)
     parsed_results = parsed.get("dependencies", [])
-    print("DEBUG Raw Gemini Response:", gemini_response)
 
     # ✅ Build suggested_versions dict
     suggested_versions = {}
@@ -128,9 +127,6 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
             continue
         suggested_versions[pkg.strip()] = ver.strip()
     
-    print("DEBUG Parsed Data:", parsed_data)
-    print("DEBUG Combined Deps:", combined_deps)
-    print("DEBUG Suggested Versions:", suggested_versions)
     if file_type == "json":
         patched_file = generate_updated_package_json(original_sections, suggested_versions)
     else:

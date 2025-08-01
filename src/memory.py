@@ -12,7 +12,7 @@ def retrieve_memory(dep_file_path):
                 try:
                     db = json.load(f)
                 except json.JSONDecodeError:
-                    # ✅ Handle empty or corrupt file
+                    # Handles empty or corrupt file
                     return None
             return db.get(dep_file_path, None)
         return None
@@ -26,7 +26,7 @@ def store_memory(dep_file_path, scan_data):
                 try:
                     db = json.load(f)
                 except json.JSONDecodeError:
-                    # ✅ Reset to empty if file is invalid
+                    # Reset to empty if file is invalid
                     db = {}
         else:
             db = {}
@@ -34,7 +34,7 @@ def store_memory(dep_file_path, scan_data):
         # Add the new entry
         db[dep_file_path] = scan_data
         
-        # ✅ Keep only the last MAX_ENTRIES
+        # Keep only the last MAX_ENTRIES
         if len(db) > MAX_ENTRIES:
             ordered_db = OrderedDict(db)
             while len(ordered_db) > MAX_ENTRIES:

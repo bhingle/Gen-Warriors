@@ -103,7 +103,7 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
     """
 
     gemini_response = call_gemini(prompt)
-    # ✅ Parse JSON safely
+    # Parses JSON safely
     if gemini_response.strip().startswith("```"):
         match = re.search(r"\{.*\}", gemini_response, re.DOTALL)
         if match:
@@ -116,7 +116,7 @@ def execute(plan_tasks, combined_deps, original_sections, file_type):
     risk_score = parsed.get("risk_score", 50)
     parsed_results = parsed.get("dependencies", [])
 
-    # ✅ Build suggested_versions dict
+    # Builds a suggested_versions dict
     suggested_versions = {}
     for item in parsed.get("suggested_fixes", []):
         if ">=" in item:

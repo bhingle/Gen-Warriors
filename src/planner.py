@@ -8,7 +8,7 @@ def plan(deps, last_scan=None):
 
     tasks = []
 
-    # Create a task for each dependency
+    # A task for each dependency
     for pkg, data in deps.items():
         tasks.append({
             "package": pkg,
@@ -17,7 +17,7 @@ def plan(deps, last_scan=None):
 
     return {
         "tasks": tasks,
-        "check_vulnerabilities": True,     # Tell executor to check CVSS scores
-        "generate_report": True,           # Tell executor to produce plain-English report
+        "check_vulnerabilities": True,     # check CVSS scores
+        "generate_report": True,           # produce risk report
         "last_scan": last_scan
     }

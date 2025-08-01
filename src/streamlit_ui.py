@@ -12,16 +12,13 @@ st.markdown("""
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 """, unsafe_allow_html=True)
 
-# ✅ Convert video to base64
 def get_video_base64(video_path):
     with open(video_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# ✅ Use relative path to your media folder
 video_path = os.path.join(os.path.dirname(__file__), "media", "cyber4.mp4")
 video_b64 = get_video_base64(video_path)
 
-# ✅ Inject video background
 st.markdown(
     f"""
     <style>
@@ -37,8 +34,8 @@ st.markdown(
         width: auto;
         height: auto;
         z-index: -1;
-        transform: translate(-50%, -50%); /* ✅ Centers video */
-        object-fit: cover;  /* ✅ Maintains aspect ratio and covers screen */
+        transform: translate(-50%, -50%); 
+        object-fit: cover;  
     }}
     .video-overlay {{
         position: fixed;
@@ -130,10 +127,10 @@ def main():
             
             st.success("✅ Analysis complete!")
 
-            # Risk level indicator with circular progress
+            
             st.markdown("### 📊 Risk Level")
             
-            # Color and styling based on risk level
+            
             if risk_score >= 81:
                 color = "#fa1a2c"
                 emoji = "🚨"
@@ -151,11 +148,10 @@ def main():
                 emoji = "🛡️"
                 risk_level = "Low Risk"
             
-            # Circular progress and risk level display
-            # Create circular progress component
+            
             risk_value = max(0, min(100, int(risk_score)))
             
-            # Try circular progress first
+            
             try:
                 circular_progress = CircularProgress(
                     label=f"{emoji} {risk_level}",
@@ -196,11 +192,12 @@ def main():
                     )
             except Exception as e:
                 st.error(f"Circular progress error: {e}")
-                # Fallback to regular progress bar
+
+                # Fallback to regular progress bar if something fails
                 st.progress(risk_value / 100)
                 st.markdown(f"**{emoji} {risk_level} - {risk_value}%**")
 
-            # ✅ Show each dependency as a card
+            # Display each dependency as a card
             st.subheader("Dependency Analysis")
             for dep in parsed_results:
                 with st.expander(f"📦 {dep['package']} ({dep['current_version']}) - {dep['severity']}"):
@@ -212,7 +209,7 @@ def main():
                     st.write(dep['explanation'])
                     st.markdown(f"✅ **Suggested Fix:** `{dep['fix']}`")
 
-            # ✅ Download patched file
+            # Download patched file
             if patched_file:
                 base_name, ext = os.path.splitext(uploaded_file.name)
                 download_name = f"{base_name}{ext}"
@@ -239,7 +236,7 @@ def main():
 
                 st.markdown(download_link, unsafe_allow_html=True)
 
-            # ✅ Side-by-side original and patched file preview
+            # Side-by-side original and patched file comparision
             st.subheader("📂 File Comparison")
             col1, col2 = st.columns(2)
             with col1:

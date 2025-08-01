@@ -18,7 +18,7 @@ AI Open-Source Dependency Guardian automates dependency risk assessment by scann
 
 ## Architecture 
 
-![Architecture Diagram](/Gen-Warriors/src/media/AI%20Open-Source%20Guardian-Arch.png)
+![Architecture Diagram](src/media/AI%20Open-Source%20Guardian-Arch.png)
 
 ## 🔧 Components
 

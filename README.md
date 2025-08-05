@@ -16,6 +16,13 @@ AI Open-Source Dependency Guardian automates dependency risk assessment by scann
 
 - Tracks project dependency health over time by storing previous scans and highlighting improvements or regressions using built-in memory.
 
+### YouTube Video Demonstrating Live Demo
+[![Watch the Demo](https://img.youtube.com/vi/4YxTJUh-PK4/hqdefault.jpg)](https://youtu.be/4YxTJUh-PK4)
+
+### Live Project Link
+[Try the Live Project](https://aiguardian.streamlit.app/)
+
+
 ## Architecture 
 
 ![Architecture Diagram](src/media/AI%20Open-Source%20Guardian-Arch.png)
